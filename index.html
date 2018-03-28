@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="js/popper.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script> -->
+</head>
+<script>
+    $(document).ready(function () {
+        $('button').click((e) => {
+            // console.log(e.currentTarget.innerHTML);
+            var a = $('input[name=numA]').val();
+            var b = $('input[name=numB]').val();
+            var operator = e.currentTarget.innerHTML;
+            if(operator == 'Chia'){
+                if(b == 0){
+                    alert('Không thể chia cho 0!');
+                    return;
+                }
+            }
+
+            var url = '/';
+            switch (operator) {
+                case 'Cong':
+                    url += 'cong/' + a + '/' + b;
+                    break;
+                case 'Tru':
+                    url += 'tru/' + a + '/' + b;
+                    break;
+                case 'Nhan':
+                    url += 'nhan/' + a + '/' + b;
+                    break;
+                case 'Chia':
+                    url += 'chia/' + a + '/' + b;
+                    break;
+            }
+
+            $.ajax({
+                url: url,
+                method: 'get',
+                success(data){
+                    $('#result').text(data);
+                },
+                error(err){
+                    alert(err);
+                }
+            })
+        })
+
+    });
+</script>
+
+<body>
+
+    <fieldset style="width: 250px">
+        <legend>Tinh Toan</legend>
+        <span>So a: </span>
+        <input type="number" name="numA" value="0">
+        <br>
+        <br>
+        <span>So b: </span>
+        <input type="number" name="numB" value="0">
+        <hr>
+        <button type="button" id='btnCong' value="cong">Cong</button>
+        <button type="button" id='btnTru'>Tru</button>
+        <button type="button" id='btnNhan'>Nhan</button>
+        <button type="button" id='btnChia'>Chia</button>
+    </fieldset>
+    <hr>
+    <span>Ket qua: </span>
+    <span id='result'>chua co ket qua</span>
+
+</body>
+
+</html>

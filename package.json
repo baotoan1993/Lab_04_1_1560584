@@ -1,0 +1,16 @@
+{
+  "name": "1560584_lab04",
+  "version": "1.0.0",
+  "description": "su dung ajax jquery",
+  "main": "server.js",
+  "dependencies": {
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "node server.js",
+    "start": "node server.js"
+  },
+  "author": "1560584",
+  "license": "ISC"
+}
